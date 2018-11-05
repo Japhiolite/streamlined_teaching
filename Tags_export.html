@@ -11797,7 +11797,7 @@ We use the tags <code>easy</code> <code>medium</code> and <code>hard</code> for 
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -11818,7 +11818,7 @@ We use the tags <code>easy</code> <code>medium</code> and <code>hard</code> for 
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sine interactive</span>
@@ -11850,13 +11850,13 @@ We use the tags <code>easy</code> <code>medium</code> and <code>hard</code> for 
 
  
  
-<div id="ec7605b7-5b81-4373-9e0f-dc728472aa26"></div>
+<div id="e3fc6461-517b-4881-ab17-24d7a6f37081"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ec7605b7-5b81-4373-9e0f-dc728472aa26');
+var element = $('#e3fc6461-517b-4881-ab17-24d7a6f37081');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "56a6a6aac48f46d189492b73bbe05037", "version_major": 2, "version_minor": 0}
+{"model_id": "5c7fb62bea7e40e584cc4c6e72f1baca", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -11874,7 +11874,7 @@ var element = $('#ec7605b7-5b81-4373-9e0f-dc728472aa26');
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sine program it</span>
@@ -11901,12 +11901,12 @@ var element = $('#ec7605b7-5b81-4373-9e0f-dc728472aa26');
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7fa416d91160&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7fd5495feb70&gt;]</pre>
 </div>
 
 </div>
@@ -12219,7 +12219,7 @@ aDQuRSsAjUajcSlaAWg0Go1L0QpAo9FoXIpWABqNRuNS/n9V03uke9Kk0QAAAABJRU5ErkJggg==
         
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># program it all yourself..</span>
@@ -12231,6 +12231,223 @@ aDQuRSsAjUajcSlaAWg0Go1L0QpAo9FoXIpWABqNRuNS/n9V03uke9Kk0QAAAABJRU5ErkJggg==
 
 </div>
     </div>
+
+
+
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With the file written below, when we use the following nbconvert command (in the command line), we will get an html file with colored cells.<br>
+        <code>jupyter nbconvert --to html 'example.ipynb' --template=mytemplate.tpl</code></p>
+<p>Alternatively, we can run the cells below to execute this command from a jupyter notebook.</p>
+
+</div>
+</div>
+</div>
+
+
+
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">writefile</span> mytemplate.tpl
+
+{% extends &#39;full.tpl&#39;%}
+{% block any_cell %}
+{% if &#39;hard&#39; in cell[&#39;metadata&#39;].get(&#39;tags&#39;, []) %}
+    &lt;div class=&quot;alert alert-danger&quot;&gt;
+        {{ super() }}
+    &lt;/div&gt;
+{% elif &#39;medium&#39; in cell[&#39;metadata&#39;].get(&#39;tags&#39;, []) %}
+    &lt;div class=&quot;alert alert-warning&quot;&gt;
+        {{ super() }}
+    &lt;/div&gt;
+{% elif &#39;easy&#39; in cell[&#39;metadata&#39;].get(&#39;tags&#39;, []) %}
+    &lt;div class=&quot;alert alert-success&quot;&gt;
+        {{ super() }}
+    &lt;/div&gt;
+{% else %}
+    {{ super() }}
+{% endif %}
+{% endblock any_cell %}
+                         
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Overwriting mytemplate.tpl
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">example</span> <span class="o">=</span> <span class="o">!</span>jupyter nbconvert --to html <span class="s1">&#39;example.ipynb&#39;</span> --template<span class="o">=</span>mytemplate.tpl --stdout
+<span class="n">example</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="c1"># have to remove the first three lines which are not proper html</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">example</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+<div class="output_html rendered_html output_subarea ">
+
+WARNING: THE COMMANDLINE INTERFACE MAY CHANGE IN FUTURE RELEASES.
+
+Options
+-------
+
+Arguments that take values are actually convenience aliases to full
+Configurables, whose aliases are listed on the help line. For more information
+on full configurables, see '--help-all'.
+
+--debug
+    set log level to logging.DEBUG (maximize logging output)
+--generate-config
+    generate default config file
+-y
+    Answer yes to any questions instead of prompting.
+--execute
+    Execute the notebook prior to export.
+--allow-errors
+    Continue notebook execution even if one of the cells throws an error and include the error message in the cell output (the default behaviour is to abort conversion). This flag is only relevant if '--execute' was specified, too.
+--stdin
+    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
+--stdout
+    Write notebook output to stdout instead of files.
+--inplace
+    Run nbconvert in place, overwriting the existing notebook (only 
+    relevant when converting to notebook format)
+--log-level=<Enum> (Application.log_level)
+    Default: 30
+    Choices: (0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL')
+    Set the log level by value or name.
+--config=<Unicode> (JupyterApp.config_file)
+    Default: ''
+    Full path of a config file.
+--to=<Unicode> (NbConvertApp.export_format)
+    Default: 'html'
+    The export format to be used, either one of the built-in formats, or a
+    dotted object name that represents the import path for an `Exporter` class
+--template=<Unicode> (TemplateExporter.template_file)
+    Default: ''
+    Name of the template file to use
+--writer=<DottedObjectName> (NbConvertApp.writer_class)
+    Default: 'FilesWriter'
+    Writer class used to write the  results of the conversion
+--post=<DottedOrNone> (NbConvertApp.postprocessor_class)
+    Default: ''
+    PostProcessor class used to write the results of the conversion
+--output=<Unicode> (NbConvertApp.output_base)
+    Default: ''
+    overwrite base name use for output files. can only be used when converting
+    one notebook at a time.
+--output-dir=<Unicode> (FilesWriter.build_directory)
+    Default: ''
+    Directory to write output(s) to. Defaults to output to the directory of each
+    notebook. To recover previous default behaviour (outputting to the current
+    working directory) use . as the flag value.
+--reveal-prefix=<Unicode> (SlidesExporter.reveal_url_prefix)
+    Default: ''
+    The URL prefix for reveal.js. This can be a a relative URL for a local copy
+    of reveal.js, or point to a CDN.
+    For speaker notes to work, a local reveal.js prefix must be used.
+--nbformat=<Enum> (NotebookExporter.nbformat_version)
+    Default: 4
+    Choices: [1, 2, 3, 4]
+    The nbformat version to write. Use this to downgrade notebooks.
+
+To see all available configurables, use `--help-all`
+
+Examples
+--------
+
+    The simplest way to use nbconvert is
+    
+    > jupyter nbconvert mynotebook.ipynb
+    
+    which will convert mynotebook.ipynb to the default format (probably HTML).
+    
+    You can specify the export format with `--to`.
+    Options include ['asciidoc', 'custom', 'hide_code_html', 'hide_code_latex', 'hide_code_pdf', 'hide_code_slides', 'html', 'html_ch', 'html_embed', 'html_toc', 'html_with_lenvs', 'html_with_toclenvs', 'latex', 'latex_with_lenvs', 'markdown', 'notebook', 'pdf', 'python', 'rst', 'script', 'selectLanguage', 'slides']
+    
+    > jupyter nbconvert --to latex mynotebook.ipynb
+    
+    Both HTML and LaTeX support multiple output templates. LaTeX includes
+    'base', 'article' and 'report'.  HTML includes 'basic' and 'full'. You
+    can specify the flavor of the format used.
+    
+    > jupyter nbconvert --to html --template basic mynotebook.ipynb
+    
+    You can also pipe the output to stdout, rather than a file
+    
+    > jupyter nbconvert mynotebook.ipynb --stdout
+    
+    PDF is generated via latex
+    
+    > jupyter nbconvert mynotebook.ipynb --to pdf
+    
+    You can get (and serve) a Reveal.js-powered slideshow
+    
+    > jupyter nbconvert myslides.ipynb --to slides --post serve
+    
+    Multiple notebooks can be given at the command line in a couple of 
+    different ways:
+    
+    > jupyter nbconvert notebook*.ipynb
+    > jupyter nbconvert notebook1.ipynb notebook2.ipynb
+    
+    or you can specify the notebooks list in a config file, containing::
+    
+        c.NbConvertApp.notebooks = ["my_notebook.ipynb"]
+    
+    > jupyter nbconvert --config mycfg.py
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 
 
     </div>
